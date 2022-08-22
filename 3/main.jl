@@ -58,7 +58,19 @@ println(r)
 y = "EXERCICIO 3"
 println(y)
 
-f(x) = 
+V = RI(x) + x
+0 = V - RI(x) - x
+y(x) = V - RI(x) - x
+
+
+k = ??
+q = ??
+V = ??
+R = ??
+
+
+I(x) = (10^-12) * (MathConstants.e^(((x*q)/k*300))-1)
+f(x) = V - R*I(x) - x
 
 error = 10^-3
 
