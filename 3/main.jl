@@ -1,4 +1,17 @@
+function bisection(a,b,f,error)
+  x = (a+b)/2
+  while abs(f(x)) > error
+    if f(a)*f(x) > 0
+      a = x
+    else 
+      b = x
+    end
+    x = (a+b)/2
+  end
+  return x
+end
 
+# Exercicio 3.2.1
 e = "EXERCICIO 1"
 println(e)
 
@@ -22,7 +35,6 @@ end
 
 r = bisection(0.5, 1)
 println(r)
-
 
 
 t = "EXERCICIO 2"
@@ -54,42 +66,40 @@ println(r)
 r = bisection(2.555, 2.566)
 println(r)
 
-
-y = "EXERCICIO 3"
-println(y)
-
-V = RI(x) + x
-0 = V - RI(x) - x
-y(x) = V - RI(x) - x
-
-
-k = ??
-q = ??
-V = ??
-R = ??
-
-
-I(x) = (10^-12) * (MathConstants.e^(((x*q)/k*300))-1)
-f(x) = V - R*I(x) - x
-
+t = "EXERCICIO 3"
+println(t)
+Ir = 10^-12
+T = 300
+k = 1.380649*(10^-23)
+q = 1.60217663*(10^-19)
+I(x) = Ir*(MathConstants.e^((x*q)/(k*T)) - 1)
+g(x,V,R) = R*I(x) + x - V
 error = 10^-3
-
-function bisection(a, b)
-  x = (a+b)/2
-  while abs(f(x)) > error
-    if f(a) * f(x) > 0
-      a = x
-    else 
-      b = x
-    end
-    x = (a+b)/2
-  end
-  return x
-end
-
-
-r = bisection(1, 2/3)
+# ((10^-12)*(e^((x*(1.60217663*10^-19))/((1.380649*10^-23)*(300)))-1))+x-30
+f(x) = g(x, 30, 1)
+r = bisection(0.8, 0.9, f, error)
 println(r)
-
-
-
+# ((10^-12)*(e^((x*(1.60217663*10^-19))/((1.380649*10^-23)*(300)))-1))+x-3
+f(x) = g(x, 3, 1)
+r = bisection(0.7, 0.8, f, error)
+println(r)
+# (10*(10^-12)*(e^((x*(1.60217663*10^-19))/((1.380649*10^-23)*(300)))-1))+x-3
+f(x) = g(x, 3, 10)
+r = bisection(0.6, 0.7, f, error)
+println(r)
+# ((10^-12)*(e^((x*(1.60217663*10^-19))/((1.380649*10^-23)*(300)))-1))+x-(300*10^-3)
+f(x) = g(x, (300*10^-3), 1)
+r = bisection(0.29, 0.31, f, error)
+println(r)
+# ((10^-12)*(e^((x*(1.60217663*10^-19))/((1.380649*10^-23)*(300)))-1))+x-((-300)*10^-3)
+f(x) = g(x, ((-300)*10^-3), 1)
+r = bisection(-0.29, -0.31, f, error)
+println(r)
+# ((10^-12)*(e^((x*(1.60217663*10^-19))/((1.380649*10^-23)*(300)))-1))+x+30
+f(x) = g(x, -30, 1)
+r = bisection(-29.9, -30.1, f, error)
+println(r)
+# (10*(10^-12)*(e^((x*(1.60217663*10^-19))/((1.380649*10^-23)*(300)))-1))+x+30
+f(x) = g(x, -30, 10)
+r = bisection(-29.9, -30.1, f, error)
+println(r)
