@@ -16,3 +16,15 @@ end
 g(x) = log(x+2)
 r = fixedpoint(1, g)
 println(r)
+
+
+g(x) = e^x-2
+r = fixedpoint(-1, g)
+println(r)
+
+
+g(x) = x-((e^x-x-2)/(e^x-1))
+r = fixedpoint(1, g)
+println(r)
+r = fixedpoint(-1, g)
+println(r)
